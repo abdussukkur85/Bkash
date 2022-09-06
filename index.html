@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bkash Slide</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <style>
+        .animate__animated{
+            animation-duration:1s;
+            animation-fill-mode:both
+        }
+        .hidden{
+            display: none;
+        }
+        .istation__wrapper *{margin:0;padding:0;box-sizing:border-box}
+        .istation_wrapper_bg {
+            width: 300px;
+            height: 250px;
+            background: url("2_BG.jpg");
+            background-size: cover;
+            background-position: center center;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        .istation .logo_img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .istation .tap_image {
+            position: absolute;
+            bottom: 20px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+        .istation .button_img, .istation .button_slide_img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            animation-duration: 2s;
+        }
+        .coin_image{
+            z-index: -1;
+        }
+        @keyframes pulse{
+            0%{
+                transform:scaleX(1)
+            }
+            50%{
+                transform:scale3d(1.05,1.05,1.05)
+            }
+            to{
+                transform:scaleX(1)
+            }
+        }
+        .animate__pulse{
+            animation-name:pulse;
+            animation-timing-function:ease-in-out
+        }
+    </style>
+</head>
+<body>
+    <div class="istation_wrapper">
+        <div class="istation_wrapper_bg istation">
+
+            
+            <div class="slide">
+                <img src="6_coin.png" class="animate__animated animate__slideInDown coin_image hidden">
+                <img src="1_Logo.png" class="animate__animated animate__pulse logo_img">
+                <div class="first_slide_main animate__animated ">
+                    <img src="3_Button.png" class="button_img animate__animated animate__fadeIn">
+                    <img src="4_Button side.png" class="button_slide_img animate__animated animate__fadeIn">
+                    <img src="5_tap.png" class="animate__animated animate__slideInUp tap_image ">
+                </div>
+            </div>
+            <img src="Slide 3.jpg" class="animate__animated animate__zoomIn hidden slide3_image">
+        </div>
+    </div>
+
+    <script>
+        let slide = document.querySelector(".slide");
+        let firstSlideMain = document.querySelector(".first_slide_main");
+        let logoImg = document.querySelector(".logo_img");
+        let buttonImg = document.querySelector(".button_img");
+        let buttonSlideImg = document.querySelector(".button_slide_img");
+        let tapImage = document.querySelector(".tap_image");
+        let coinImg = document.querySelector(".coin_image");
+        let slide3Img = document.querySelector(".slide3_image");
+
+    setTimeout(function(){
+        add_class(firstSlideMain, 'animate__fadeOut');
+        
+        setTimeout(function(){
+            remove_class(coinImg, 'hidden');
+            setTimeout(function(){
+                add_class(slide, 'hidden')
+                remove_class(slide3Img,'hidden');
+            },2000);
+        },1500);
+    },3000);
+    /*add and remove class function*/
+    function remove_class(element, classname,newclass='') {
+        element.className = element.className.replace(classname, newclass);
+    }
+    function add_class(element, classname) {
+        element.classList ? element.classList.add(classname) : element.className += (' ' + classname);
+    }
+    </script>
+</body>
+</html>
